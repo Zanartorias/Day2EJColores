@@ -18,6 +18,7 @@ import android.widget.Toast;
 public class Calculator extends ActionBarActivity {
     int input = 0;
     int temp = 0;
+    int ANS = 0;
     //idOP   +:0   -:1   x:2  /:3   None:4
     int opID = 0;
     boolean negative = false;
@@ -60,22 +61,12 @@ public class Calculator extends ActionBarActivity {
                     input *= 10;
                     break;
                 case R.id.key1:
-                    if (!negative) {
                         input *= 10;
                         input += 1;
-                    } else {
-                        input *= 10;
-                        input -= 1;
-                    }
                     break;
                 case R.id.key2:
-                    if (!negative) {
                         input *= 10;
                         input += 2;
-                    } else {
-                        input *= 10;
-                        input -= 2;
-                    }
                     break;
                 case R.id.pitton:
                     //Toast pitoast = Toast.makeText(Calculator.this, "Crimes against science", Toast.LENGTH_SHORT);
@@ -99,71 +90,38 @@ public class Calculator extends ActionBarActivity {
                 startActivity(intent);
                 break;*/
                 case R.id.key3:
-                    if (!negative) {
                         input *= 10;
                         input += 3;
-                    } else {
-                        input *= 10;
-                        input -= 3;
-                    }
+
                     break;
                 case R.id.key4:
-                    if (!negative) {
                         input *= 10;
                         input += 4;
-                    } else {
-                        input *= 10;
-                        input -= 4;
-                    }
                     break;
                 case R.id.key5:
-                    if (!negative) {
                         input *= 10;
                         input += 5;
-                    } else {
-                        input *= 10;
-                        input -= 5;
-                    }
                     break;
                 case R.id.key6:
-                    if (!negative) {
                         input *= 10;
                         input += 6;
-                    } else {
-                        input *= 10;
-                        input -= 6;
-                    }
                     break;
                 case R.id.key7:
-                    if (!negative) {
                         input *= 10;
                         input += 7;
-                    } else {
-                        input *= 10;
-                        input -= 7;
-                    }
                     break;
                 case R.id.key8:
-                    if (!negative) {
                         input *= 10;
                         input += 8;
-                    } else {
-                        input *= 10;
-                        input -= 8;
-                    }
                     break;
                 case R.id.key9:
-                    if (!negative) {
                         input *= 10;
                         input += 9;
-                    } else {
-                        input *= 10;
-                        input -= 9;
-                    }
                     break;
                 default:
                     break;
             }
+
             resultShow.setText(String.valueOf(input));
             if (input == 0)
                 zeroIN = true;
@@ -193,6 +151,25 @@ public class Calculator extends ActionBarActivity {
                 break;
         }
         return a;
+    }
+
+    public void show (int num1, int opera, int num2){
+        switch(opera){
+            case 0:
+                resultShow.setText(String.valueOf(input));
+                break;
+            case 1:
+                resultShow.setText(String.valueOf(input));
+                break;
+            case 2:
+                resultShow.setText(String.valueOf(input));
+                break;
+            case 3:
+                resultShow.setText(String.valueOf(input));
+                break;
+            default:
+                break;
+        }
     }
 
     public void addOperator(View v){

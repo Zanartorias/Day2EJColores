@@ -14,5 +14,11 @@
     <string name="snackbar_actionY">Yes</string>
     <string name="snackbar_actionN">No</string>
     <string name="pi_wrongChoice">You are wrong</string>
+    <string name="title_activity_async_test">AsyncTest</string>
+    <string name="title_activity_act__register">Act_Register</string>
+    <string name="title_activity_sact__checknest">Sact_Checknest</string>
+    <string name="title_activity_music_player">MusicPlayer</string>
+    <string name="s_nyaa">Nyaa</string>
+    <string name="title_activity_act__gps">Act_GPS</string>
 
 </resources>

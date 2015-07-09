@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.dango.day2ejcolores" >
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,6 +26,26 @@
         <activity
             android:name=".Calculator"
             android:label="@string/title_activity_calculator" >
+        </activity>
+        <activity
+            android:name=".AsyncTest"
+            android:label="@string/title_activity_async_test" >
+        </activity>
+        <activity
+            android:name=".Act_Register"
+            android:label="@string/title_activity_act__register" >
+        </activity>
+        <activity
+            android:name=".Sact_Checknest"
+            android:label="@string/title_activity_sact__checknest" >
+        </activity>
+        <activity
+            android:name=".MusicPlayer"
+            android:label="@string/title_activity_music_player" >
+        </activity>
+        <activity
+            android:name=".Act_GPS"
+            android:label="@string/title_activity_act__gps" >
         </activity>
     </application>
 

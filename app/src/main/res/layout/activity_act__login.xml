@@ -20,10 +20,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="LOGIN"
+                android:text="Crownest Database"
                 android:id="@+id/textView"
                 android:layout_gravity="center"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:singleLine="false" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sb_checknest"
+                android:layout_gravity="center_horizontal|top"
+                android:src="@drawable/ic_crow"
+                android:onClick="onClick" />
         </FrameLayout>
 
         <LinearLayout
@@ -35,7 +45,8 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="#FFFFFF">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -43,38 +54,43 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="E-Mail:"
                     android:id="@+id/textView2"
-                    android:layout_gravity="left|top" />
+                    android:layout_gravity="left|top"
+                    android:textColor="#000000" />
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:ems="10"
-                    android:id="@+id/editText"
-                    android:layout_gravity="center" />
+                    android:id="@+id/editEmail"
+                    android:layout_gravity="center"
+                    android:text="Email" />
 
             </FrameLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="#FFFFFF">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Password"
+                    android:text="Password:"
                     android:id="@+id/textView3"
-                    android:layout_gravity="left|center_vertical" />
+                    android:layout_gravity="left|top"
+                    android:textColor="#000000" />
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:ems="10"
-                    android:id="@+id/editText2"
-                    android:layout_gravity="center_horizontal|bottom" />
+                    android:id="@+id/editPassword"
+                    android:layout_gravity="center"
+                    android:text="Password" />
             </FrameLayout>
         </LinearLayout>
 
@@ -89,6 +105,20 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Register"
+                    android:id="@+id/b_reg"
+                    android:layout_gravity="left|bottom" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LOGIN"
+                    android:id="@+id/b_log"
+                    android:layout_gravity="right|bottom"
+                    android:onClick="onClick" />
             </FrameLayout>
 
             <FrameLayout

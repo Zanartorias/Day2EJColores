@@ -20,7 +20,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#0000ff"></FrameLayout>
+                android:background="#0000ff">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/b_gps"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:onClick="onClick"
+                    android:src="@drawable/ic_rosa"
+                    android:layout_marginBottom="20dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/b_music"
+                    android:layout_gravity="center"
+                    android:nestedScrollingEnabled="true"
+                    android:onClick="onClick"
+                    android:src="@drawable/ic_corcheas" />
+            </FrameLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -77,7 +96,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#FF0000"></FrameLayout>
+                android:background="#FF0000">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Count Test"
+                    android:id="@+id/b_async"
+                    android:layout_gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:background="#FF0000" />
+            </FrameLayout>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
