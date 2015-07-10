@@ -1,6 +1,8 @@
 package com.android.dango.day2ejcolores;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -8,16 +10,31 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+
+import io.fabric.sdk.android.Fabric;
+
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "k1hdzAmkoWHCgTOYjeenQUAJS";
+    private static final String TWITTER_SECRET = "wrZqnlEzlftv5MZXNgkpmZuIOqlyTbXhFnkA1iurd75Y1iZyz1";
+
 
     Button b0;
     Button b1;
     Button b2;
 
+    SharedPreferences user;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_main);
         b0 = (Button) findViewById(R.id.b_gotoLog);
         b1 = (Button) findViewById(R.id.b_calc);
@@ -25,6 +42,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         b0.setOnClickListener(this);
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
+
+        user = getSharedPreferences(String.valueOf(R.string.USER_PREFS), Context.MODE_PRIVATE);
     }
 
     @Override
@@ -51,6 +70,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        boolean logged = user.getBoolean("LOGGED", false);
         Intent intent;
         switch(v.getId()){
             case R.id.b_gotoLog:
@@ -66,12 +86,16 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.b_music:
-                intent = new Intent(getApplicationContext(), MusicPlayer.class);
-                startActivity(intent);
+                if(logged){
+                    intent = new Intent(getApplicationContext(), MusicPlayer.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.b_gps:
-                intent = new Intent(getApplicationContext(), Act_GPS.class);
-                startActivity(intent);
+                if(logged){
+                    intent = new Intent(getApplicationContext(), Act_GPS.class);
+                    startActivity(intent);
+                }
                 break;
             default:
                 break;

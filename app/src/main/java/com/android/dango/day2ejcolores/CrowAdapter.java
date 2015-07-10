@@ -33,8 +33,8 @@ public class CrowAdapter extends RecyclerView.Adapter<CrowAdapter.AdapterViewHol
 
     @Override
     public int getItemCount() {
-        //Debemos retornar el tamaÒo de todos los elementos contenidos en el viewholder
-        //Por defecto es return 0 --> No se mostrar· nada.
+        //Debemos retornar el tama√±o de todos los elementos contenidos en el viewholder
+        //Por defecto es return 0 --> No se mostrar√° nada.
         //return contactos.size();
         return 0;
     }
@@ -45,9 +45,9 @@ public class CrowAdapter extends RecyclerView.Adapter<CrowAdapter.AdapterViewHol
     public class AdapterViewHolder extends RecyclerView.ViewHolder {
         /*
         *  Mantener una referencia a los elementos de nuestro ListView mientras el usuario realiza
-        *  scrolling en nuestra aplicaciÛn. AsÌ que cada vez que obtenemos la vista de un item,
-        *  evitamos las frecuentes llamadas a findViewById, la cu·l se realizarÌa ˙nicamente la primera vez y el resto
-        *  llamarÌamos a la referencia en el ViewHolder, ahorr·ndonos procesamiento.
+        *  scrolling en nuestra aplicaci√≥n. As√≠ que cada vez que obtenemos la vista de un item,
+        *  evitamos las frecuentes llamadas a findViewById, la cu√°l se realizar√≠a √∫nicamente la primera vez y el resto
+        *  llamar√≠amos a la referencia en el ViewHolder, ahorr√°ndonos procesamiento.
         */
 
         public ImageView icon;

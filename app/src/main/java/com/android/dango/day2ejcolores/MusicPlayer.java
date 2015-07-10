@@ -17,8 +17,6 @@ public class MusicPlayer extends ActionBarActivity implements View.OnClickListen
     MediaPlayer mediaPlayer = new MediaPlayer();
     File sdCard = Environment.getExternalStorageDirectory();
     File nyaSong = new File(sdCard.getAbsolutePath() + "/Music/nyancat.mp3");
-    boolean playing = false;
-    boolean started = false;
 
 
     @Override
@@ -100,5 +98,12 @@ public class MusicPlayer extends ActionBarActivity implements View.OnClickListen
             default:
                 break;
         }*/
+    }
+
+    @Override
+    protected void onStop() {
+        nyaPlayer.stop();
+        nyaPlayer.release();
+        super.onStop();
     }
 }

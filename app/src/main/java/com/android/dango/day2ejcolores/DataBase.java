@@ -14,8 +14,8 @@ public class DataBase extends SQLiteOpenHelper{
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "CrownestDB";
     private static final String LOGIN_TABLE_NAME = "login";
-    private static final String LOGIN_TABLE_CREATE = "CREATE TABLE" +
-            LOGIN_TABLE_NAME + "(id INTEGER PRIMARY KEY AUTOINCREMENT, mail TEXT, password TEXT)";
+    private static final String LOGIN_TABLE_CREATE = "CREATE TABLE " +
+            LOGIN_TABLE_NAME + " (id INTEGER PRIMARY KEY AUTOINCREMENT, mail TEXT, password TEXT)";
 
     public DataBase(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -49,12 +49,17 @@ public class DataBase extends SQLiteOpenHelper{
 
     public Cursor getPasswordByEmail(String userMail) {
         SQLiteDatabase db = this.getWritableDatabase();
+        /*Cursor c = db.rawQuery("SELECT * FROM login", null);
+        while (c.moveToNext()){
+            Log.v("MYDB",c.getString(1));
+        }*/
+
         String[] columns = {"password"};
         String[] where = {userMail};
-        Cursor c = db.query(
+       Cursor c = db.query(
                 LOGIN_TABLE_NAME,  // The table to query
                 columns,                                    // The columns to return
-                "name=?",                                   // The columns for the WHERE clause
+                "mail=?",                                   // The columns for the WHERE clause
                 where,                                      // The values for the WHERE clause
                 null,                                       // don't group the rows
                 null,                                       // don't filter by row groups

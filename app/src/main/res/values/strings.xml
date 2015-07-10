@@ -20,5 +20,6 @@
     <string name="title_activity_music_player">MusicPlayer</string>
     <string name="s_nyaa">Nyaa</string>
     <string name="title_activity_act__gps">Act_GPS</string>
+    <string name="USER_PREFS">userPrefs</string>
 
 </resources>

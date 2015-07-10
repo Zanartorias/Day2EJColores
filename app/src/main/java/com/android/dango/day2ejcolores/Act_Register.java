@@ -28,6 +28,8 @@ public class Act_Register extends ActionBarActivity implements View.OnClickListe
 
         email = (EditText)findViewById(R.id.editEmail);
         password =  (EditText) findViewById(R.id.editPassword);
+
+        cDatabase = new DataBase(getApplicationContext());
     }
 
     @Override
@@ -56,14 +58,15 @@ public class Act_Register extends ActionBarActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v.getId() == R.id.b_reg){
             ContentValues valuesToStore = new ContentValues();
-            valuesToStore.put("mail", String.valueOf(email.getText()));
-            valuesToStore.put("password", String.valueOf(password.getText()));
+            valuesToStore.put("mail", email.getText().toString());
+            valuesToStore.put("password", password.getText().toString());
             cDatabase.createUser(valuesToStore, "login");
 
-            Toast.makeText(getApplicationContext(), "insertion done", Toast.LENGTH_SHORT).show();
-            email.setText("");
-            password.setText("");
+            Toast.makeText(getApplicationContext(), "User Created", Toast.LENGTH_SHORT).show();
+            email.setText("Email");
+            password.setText("Password");
             finish();
         }
     }
+
 }
