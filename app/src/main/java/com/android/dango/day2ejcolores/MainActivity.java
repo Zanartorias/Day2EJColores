@@ -118,6 +118,13 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 }else
                     Toast.makeText(getApplicationContext(), "Not logged in", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.b_mem:
+                if(logged){
+                    intent = new Intent(getApplicationContext(), Act_Memory.class);
+                    startActivity(intent);
+                }else
+                    Toast.makeText(getApplicationContext(), "Not logged in", Toast.LENGTH_SHORT).show();
+                break;
             case R.id.b_refresh:
                 username = user.getString("USERNAME", null);
                 if (username != null)

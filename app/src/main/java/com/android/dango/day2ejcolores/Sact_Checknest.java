@@ -1,20 +1,22 @@
 package com.android.dango.day2ejcolores;
 
 import android.app.ListActivity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+
+import java.util.ArrayList;
 
 
 public class Sact_Checknest extends ListActivity implements View.OnClickListener{
 
     EditText passphrase;
-    Button b0;
+    //Button b0;
     DataBase cDatabase;
     //ArrayList<String> listItems=new ArrayList<String>();
     //ArrayAdapter<String> adapter;
@@ -24,20 +26,37 @@ public class Sact_Checknest extends ListActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sact__checknest);
-        b0 = (Button) findViewById(R.id.b_pass);
-        b0.setOnClickListener(this);
+        //b0 = (Button) findViewById(R.id.b_pass);
+        //b0.setOnClickListener(this);
         passphrase = (EditText)findViewById(R.id.editText);
 
 
         //adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listItems);
         //setListAdapter(adapter);
+
+        cDatabase = new DataBase(getApplicationContext());
+
+        ArrayList<String> mails = new ArrayList<String>();
+        ArrayList<String> passws = new ArrayList<String>();
+
+        if(cDatabase != null){
+            Cursor c = cDatabase.getAllUsers();
+            while(c.moveToNext()){
+                //adapterViewHolder.icon.setImageDrawable(adapterViewHolder.v.getResources().getDrawable(R.drawable.ic_icon));
+                //adapterViewHolder.name.setText(c.getString(c.getColumnIndex("mail")));
+                mails.add(c.getString(c.getColumnIndex("mail")));
+                passws.add(c.getString(c.getColumnIndex("password")));
+            }
+        }
+
         mRecyclerView = (RecyclerView) findViewById(R.id.mRecyclerView);
         mLinearLayout = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLinearLayout);
-        mRecyclerView.setAdapter(new CrowAdapter());
+        mRecyclerView.setAdapter(new CrowAdapter(mails, passws));
+
+
         mRecyclerView.setVisibility(View.INVISIBLE);
 
-        cDatabase = new DataBase(getApplicationContext());
     }
 
     @Override
@@ -64,23 +83,27 @@ public class Sact_Checknest extends ListActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.b_pass){
-            if(passphrase.equals(String.valueOf("raiz"))){
-                /*adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listItems);
-                setListAdapter(adapter);
+        switch(v.getId()){
+            case R.id.b_pass:
+                if(passphrase.equals(String.valueOf("raiz"))){
+                    /*adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listItems);
+                    setListAdapter(adapter);
 
-                cDatabase = new DataBase(getApplicationContext());*/
+                    cDatabase = new DataBase(getApplicationContext());*/
 
-                /*Cursor c = cDatabase.getAllUsers();
-                if (c.moveToFirst()) {
-                    do {
-                        adapter.add(c.getString(c.getColumnIndex("mail")));
-                        adapter.add(" // ");
-                        adapter.add(c.getString(c.getColumnIndex("password")));
-                    } while (c.moveToNext());
-                }*/
-                mRecyclerView.setVisibility(View.VISIBLE);
-            }
+                    /*Cursor c = cDatabase.getAllUsers();
+                    if (c.moveToFirst()) {
+                        do {
+                            adapter.add(c.getString(c.getColumnIndex("mail")));
+                            adapter.add(" // ");
+                            adapter.add(c.getString(c.getColumnIndex("password")));
+                        } while (c.moveToNext());
+                    }*/
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                }
+                break;
+            default:
+                break;
         }
     }
 

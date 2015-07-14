@@ -1,22 +1,29 @@
 package com.android.dango.day2ejcolores;
 
-import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Dango on 07/07/2015.
  */
 public class CrowAdapter extends RecyclerView.Adapter<CrowAdapter.AdapterViewHolder>{
 
-    private AdapterViewHolder adapterViewHolder;
-    private int i;
-    DataBase cDatabase;
+    //private AdapterViewHolder adapterViewHolder;
+    //private int i;
+    //DataBase cDatabase;
+    ArrayList<String> Mails;
+    ArrayList<String> Passws;
+
+    CrowAdapter(ArrayList<String> mails, ArrayList<String> passws){
+        Mails = mails;
+        Passws = passws;
+    }
 
 
     @Override
@@ -30,14 +37,17 @@ public class CrowAdapter extends RecyclerView.Adapter<CrowAdapter.AdapterViewHol
 
     @Override
     public void onBindViewHolder(CrowAdapter.AdapterViewHolder adapterViewHolder, int i) {
-        cDatabase.getWritableDatabase();
+        /*cDatabase.getWritableDatabase();
         if(cDatabase != null){
             Cursor c = cDatabase.getAllUsers();
             if(c.moveToPosition(i)){
                 adapterViewHolder.icon.setImageDrawable(adapterViewHolder.v.getResources().getDrawable(R.drawable.ic_icon));
                 adapterViewHolder.name.setText(c.getString(c.getColumnIndex("mail")));
             }
-        }
+        }*/
+        adapterViewHolder.icon.setImageDrawable(adapterViewHolder.v.getResources().getDrawable(R.drawable.ic_icon));
+        adapterViewHolder.mail.setText(Mails.get(i));
+        adapterViewHolder.password.setText(Passws.get(i));
     }
 
 
@@ -46,7 +56,7 @@ public class CrowAdapter extends RecyclerView.Adapter<CrowAdapter.AdapterViewHol
         //Debemos retornar el tamaño de todos los elementos contenidos en el viewholder
         //Por defecto es return 0 --> No se mostrará nada.
         //return contactos.size();
-        int count = 0;
+        /*int count = 0;
         cDatabase.getWritableDatabase();
         if(cDatabase != null){
             Cursor c = cDatabase.getAllUsers();
@@ -56,7 +66,8 @@ public class CrowAdapter extends RecyclerView.Adapter<CrowAdapter.AdapterViewHol
             }else
                 Log.v("Counting", "Finished Counting");
         }
-        return count;
+        return count;*/
+        return Mails.size();
     }
 
 
@@ -71,13 +82,15 @@ public class CrowAdapter extends RecyclerView.Adapter<CrowAdapter.AdapterViewHol
         */
 
         public ImageView icon;
-        public TextView name;
+        public TextView mail;
+        public TextView password;
         public View v;
         public AdapterViewHolder(View itemView) {
             super(itemView);
             this.v = itemView;
             this.icon = (ImageView) itemView.findViewById(R.id.icon);
-            this.name = (TextView) itemView.findViewById(R.id.name);
+            this.mail = (TextView) itemView.findViewById(R.id.mail);
+            this.password = (TextView) itemView.findViewById(R.id.password);
         }
     }
 }

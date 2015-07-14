@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.dango.day2ejcolores" >
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -47,10 +48,15 @@
             android:name=".Act_GPS"
             android:label="@string/title_activity_act__gps" >
         </activity>
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="03b38c1df7ccef9433d53da2f768f1bed8c583e0" />
+
+        <activity
+            android:name=".Act_Memory"
+            android:label="@string/title_activity_act__memory" >
+        </activity>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

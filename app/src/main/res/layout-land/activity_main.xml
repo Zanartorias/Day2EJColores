@@ -38,6 +38,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:onClick="onClick"
                     android:src="@drawable/ic_rosa" />
+
             </FrameLayout>
 
             <FrameLayout
@@ -50,14 +51,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/textLogInfo"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:onClick="onClick" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Refresh \n login"
+                    android:id="@+id/b_refresh"
+                    android:layout_gravity="center_horizontal|top"
+                    android:background="#66FF66"
+                    android:onClick="onClick" />
             </FrameLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#FF0000"></FrameLayout>
+                android:background="#FF0000">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="Memory"
+                    android:id="@+id/b_mem"
+                    android:layout_gravity="center"
+                    android:background="#FFEE00"
+                    android:onClick="onClick"
+                    android:elegantTextHeight="false" />
+            </FrameLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -80,7 +104,8 @@
                     android:layout_gravity="left|center_vertical"
                     android:background="#0000FF"
                     android:textColor="#FFFFFF"
-                    android:layout_marginLeft="100dp" />
+                    android:layout_marginLeft="100dp"
+                    android:onClick="onClick" />
             </FrameLayout>
 
             <FrameLayout
@@ -96,7 +121,8 @@
                     android:id="@+id/b_calc"
                     android:layout_gravity="center"
                     android:textColor="#000000"
-                    android:background="#00FF00" />
+                    android:background="#00FF00"
+                    android:onClick="onClick" />
             </FrameLayout>
 
             <FrameLayout
@@ -113,7 +139,8 @@
                     android:layout_gravity="right|center_vertical"
                     android:textColor="#FFFFFF"
                     android:background="#FF0000"
-                    android:layout_marginRight="100dp" />
+                    android:layout_marginRight="100dp"
+                    android:onClick="onClick" />
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>
