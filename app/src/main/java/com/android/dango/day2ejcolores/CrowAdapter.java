@@ -72,14 +72,12 @@ public class CrowAdapter extends RecyclerView.Adapter<CrowAdapter.AdapterViewHol
 
         public ImageView icon;
         public TextView name;
-        public TextView phone;
         public View v;
         public AdapterViewHolder(View itemView) {
             super(itemView);
             this.v = itemView;
             this.icon = (ImageView) itemView.findViewById(R.id.icon);
             this.name = (TextView) itemView.findViewById(R.id.name);
-            this.phone = (TextView) itemView.findViewById(R.id.phone);
         }
     }
 }

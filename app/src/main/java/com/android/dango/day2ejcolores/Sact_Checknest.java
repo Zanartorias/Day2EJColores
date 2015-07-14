@@ -1,19 +1,14 @@
 package com.android.dango.day2ejcolores;
 
 import android.app.ListActivity;
-import android.database.Cursor;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 
 public class Sact_Checknest extends ListActivity implements View.OnClickListener{
@@ -21,8 +16,10 @@ public class Sact_Checknest extends ListActivity implements View.OnClickListener
     EditText passphrase;
     Button b0;
     DataBase cDatabase;
-    ArrayList<String> listItems=new ArrayList<String>();
-    ArrayAdapter<String> adapter;
+    //ArrayList<String> listItems=new ArrayList<String>();
+    //ArrayAdapter<String> adapter;
+    private RecyclerView mRecyclerView;
+    private LinearLayoutManager mLinearLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +29,13 @@ public class Sact_Checknest extends ListActivity implements View.OnClickListener
         passphrase = (EditText)findViewById(R.id.editText);
 
 
-        adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listItems);
-        setListAdapter(adapter);
+        //adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listItems);
+        //setListAdapter(adapter);
+        mRecyclerView = (RecyclerView) findViewById(R.id.mRecyclerView);
+        mLinearLayout = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLinearLayout);
+        mRecyclerView.setAdapter(new CrowAdapter());
+        mRecyclerView.setVisibility(View.INVISIBLE);
 
         cDatabase = new DataBase(getApplicationContext());
     }
@@ -69,14 +71,15 @@ public class Sact_Checknest extends ListActivity implements View.OnClickListener
 
                 cDatabase = new DataBase(getApplicationContext());*/
 
-                Cursor c = cDatabase.getAllUsers();
+                /*Cursor c = cDatabase.getAllUsers();
                 if (c.moveToFirst()) {
                     do {
                         adapter.add(c.getString(c.getColumnIndex("mail")));
                         adapter.add(" // ");
                         adapter.add(c.getString(c.getColumnIndex("password")));
                     } while (c.moveToNext());
-                }
+                }*/
+                mRecyclerView.setVisibility(View.VISIBLE);
             }
         }
     }
