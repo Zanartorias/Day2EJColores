@@ -1,16 +1,14 @@
 package com.android.dango.day2ejcolores;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,11 +24,16 @@ public class Calculator extends ActionBarActivity {
     boolean zeroIN = false;
     TextView resultShow;
 
+    SharedPreferences user;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
         resultShow = (TextView) findViewById(R.id.resultView);
+        user = getSharedPreferences(String.valueOf(R.string.USER_PREFS), 0);
+        editor = user.edit();
     }
 
     @Override
@@ -46,10 +49,25 @@ public class Calculator extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        Intent intent;
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch(id){
+            case R.id.action_call:
+                intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:112"));
+                startActivity(intent);
+                break;
+            case R.id.action_explorer:
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+                startActivity(intent);
+                break;
+            case R.id.action_logout:
+                editor.putBoolean("LOGGED", false);
+                editor.putString("USERNAME", null);
+                editor.apply();
+                finish();
+                break;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -117,6 +135,9 @@ public class Calculator extends ActionBarActivity {
                 case R.id.key9:
                         input *= 10;
                         input += 9;
+                    break;
+                case R.id.b_ans:
+                    input = ANS;
                     break;
                 default:
                     break;
@@ -214,6 +235,7 @@ public class Calculator extends ActionBarActivity {
                 first = false;
                 break;
             case R.id.keyClear:
+                ANS = temp;
                 temp = 0;
                 input = 0;
                 first = true;
@@ -223,6 +245,9 @@ public class Calculator extends ActionBarActivity {
             default:
                 break;
         }
+        if(v.getId() != R.id.keyClear)
+            ANS = temp;
+
         if(temp < 1000000000)
             resultShow.setText(String.valueOf(temp));
         else

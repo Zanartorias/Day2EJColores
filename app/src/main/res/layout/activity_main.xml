@@ -45,7 +45,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#00FF00"></FrameLayout>
+                android:background="#00FF00"
+                android:onClick="refreshLogin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textLogInfo"
+                    android:layout_gravity="center"
+                    android:textAlignment="center" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Refresh \n login"
+                    android:id="@+id/b_refresh"
+                    android:layout_gravity="center_horizontal|top"
+                    android:background="#66FF66"
+                    android:onClick="onClick" />
+
+            </FrameLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"

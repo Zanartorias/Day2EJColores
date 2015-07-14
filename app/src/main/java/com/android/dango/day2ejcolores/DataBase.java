@@ -68,6 +68,28 @@ public class DataBase extends SQLiteOpenHelper{
         return c;
     }
 
+    public boolean userMailTaken (String userMail){
+        boolean taken = false;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] columns = {"mail"};
+        String[] where = {userMail};
+        Cursor c = db.query(
+                LOGIN_TABLE_NAME,  // The table to query
+                columns,                                    // The columns to return
+                "mail=?",                                   // The columns for the WHERE clause
+                where,                                      // The values for the WHERE clause
+                null,                                       // don't group the rows
+                null,                                       // don't filter by row groups
+                null                                        // The sort order
+        );
+        if (c.moveToFirst()){
+            if(userMail.equals(c.getString(c.getColumnIndex("mail"))))
+                taken = true;
+        }
+
+        return taken;
+    }
+
 
     public void createUser (ContentValues values, String tableName) {
         SQLiteDatabase db = this.getWritableDatabase();

@@ -1,6 +1,8 @@
 package com.android.dango.day2ejcolores;
 
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,8 @@ public class CrowAdapter extends RecyclerView.Adapter<CrowAdapter.AdapterViewHol
 
     private AdapterViewHolder adapterViewHolder;
     private int i;
+    DataBase cDatabase;
+
 
     @Override
     public CrowAdapter.AdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -26,8 +30,14 @@ public class CrowAdapter extends RecyclerView.Adapter<CrowAdapter.AdapterViewHol
 
     @Override
     public void onBindViewHolder(CrowAdapter.AdapterViewHolder adapterViewHolder, int i) {
-        adapterViewHolder.icon.setImageDrawable(adapterViewHolder.v.getResources().getDrawable(R.drawable.ic_icon));
-        adapterViewHolder.name.setText("Name");
+        cDatabase.getWritableDatabase();
+        if(cDatabase != null){
+            Cursor c = cDatabase.getAllUsers();
+            if(c.moveToPosition(i)){
+                adapterViewHolder.icon.setImageDrawable(adapterViewHolder.v.getResources().getDrawable(R.drawable.ic_icon));
+                adapterViewHolder.name.setText(c.getString(c.getColumnIndex("mail")));
+            }
+        }
     }
 
 
@@ -36,7 +46,17 @@ public class CrowAdapter extends RecyclerView.Adapter<CrowAdapter.AdapterViewHol
         //Debemos retornar el tamaño de todos los elementos contenidos en el viewholder
         //Por defecto es return 0 --> No se mostrará nada.
         //return contactos.size();
-        return 0;
+        int count = 0;
+        cDatabase.getWritableDatabase();
+        if(cDatabase != null){
+            Cursor c = cDatabase.getAllUsers();
+            if(c.moveToNext()){
+                count++;
+                Log.v("Counting", "counted " + i);
+            }else
+                Log.v("Counting", "Finished Counting");
+        }
+        return count;
     }
 
 

@@ -37,6 +37,16 @@
                 android:text="PI"
                 android:id="@+id/button"
                 android:layout_gravity="right|center_vertical"
+                android:onClick="addNumber"
+                android:layout_marginRight="60dp" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ANS"
+                android:id="@+id/b_ans"
+                android:layout_gravity="center_vertical|right"
                 android:onClick="addNumber" />
         </FrameLayout>
 

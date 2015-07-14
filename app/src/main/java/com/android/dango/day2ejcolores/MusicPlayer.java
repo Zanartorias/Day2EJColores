@@ -1,5 +1,6 @@
 package com.android.dango.day2ejcolores;
 
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,6 +19,9 @@ public class MusicPlayer extends ActionBarActivity implements View.OnClickListen
     File sdCard = Environment.getExternalStorageDirectory();
     File nyaSong = new File(sdCard.getAbsolutePath() + "/Music/nyancat.mp3");
 
+    SharedPreferences user;
+    SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,9 @@ public class MusicPlayer extends ActionBarActivity implements View.OnClickListen
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
+
+        user = getSharedPreferences(String.valueOf(R.string.USER_PREFS), 0);
+        editor = user.edit();
     }
 
     @Override
@@ -47,8 +54,12 @@ public class MusicPlayer extends ActionBarActivity implements View.OnClickListen
 
         //noinspection SimplifiableIfStatement
         switch(id){
-            case R.id.action_settings:
-                return true;
+            case R.id.action_logout:
+                editor.putBoolean("LOGGED", false);
+                editor.putString("USERNAME", null);
+                editor.apply();
+                finish();
+                break;
             case R.id.action_nyaa:
                 if(!nyaPlayer.isPlaying()) {
                     /*if (!started) {

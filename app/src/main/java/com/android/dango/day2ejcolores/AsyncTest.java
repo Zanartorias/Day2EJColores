@@ -1,5 +1,6 @@
 package com.android.dango.day2ejcolores;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
@@ -20,6 +21,9 @@ public class AsyncTest extends ActionBarActivity implements View.OnClickListener
     Button b0;
     ProgressBar progressBar;
 
+    SharedPreferences user;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +31,9 @@ public class AsyncTest extends ActionBarActivity implements View.OnClickListener
         b0 = (Button) findViewById(R.id.b_cfm);
         b0.setOnClickListener(this);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        user = getSharedPreferences(String.valueOf(R.string.USER_PREFS), 0);
+        editor = user.edit();
     }
 
     @Override
@@ -44,9 +51,17 @@ public class AsyncTest extends ActionBarActivity implements View.OnClickListener
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch(id){
+            case R.id.action_logout:
+                editor.putBoolean("LOGGED", false);
+                editor.putString("USERNAME", null);
+                editor.apply();
+                finish();
+                break;
+            default:
+                break;
         }
+
 
         return super.onOptionsItemSelected(item);
     }

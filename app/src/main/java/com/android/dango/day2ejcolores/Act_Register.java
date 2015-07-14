@@ -57,15 +57,19 @@ public class Act_Register extends ActionBarActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.b_reg){
-            ContentValues valuesToStore = new ContentValues();
-            valuesToStore.put("mail", email.getText().toString());
-            valuesToStore.put("password", password.getText().toString());
-            cDatabase.createUser(valuesToStore, "login");
+            if(cDatabase.userMailTaken(email.getText().toString()))
+                Toast.makeText(getApplicationContext(), "Error: User Already Taken", Toast.LENGTH_SHORT).show();
+            else {
+                ContentValues valuesToStore = new ContentValues();
+                valuesToStore.put("mail", email.getText().toString());
+                valuesToStore.put("password", password.getText().toString());
+                cDatabase.createUser(valuesToStore, "login");
 
-            Toast.makeText(getApplicationContext(), "User Created", Toast.LENGTH_SHORT).show();
-            email.setText("Email");
-            password.setText("Password");
-            finish();
+                Toast.makeText(getApplicationContext(), "User Created", Toast.LENGTH_SHORT).show();
+                email.setText("Email");
+                password.setText("Password");
+                finish();
+            }
         }
     }
 

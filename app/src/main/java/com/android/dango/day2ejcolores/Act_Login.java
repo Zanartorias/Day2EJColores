@@ -3,7 +3,6 @@ package com.android.dango.day2ejcolores;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -17,10 +16,10 @@ import android.widget.Toast;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
-import com.twitter.sdk.android.core.TwitterAuthToken;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+
 
 
 public class Act_Login extends ActionBarActivity implements View.OnClickListener{
@@ -61,7 +60,9 @@ public class Act_Login extends ActionBarActivity implements View.OnClickListener
             public void success(Result<TwitterSession> result) {
                 // Do something with result, which provides a TwitterSession for making API calls
                 TwitterSession session = Twitter.getSessionManager().getActiveSession();
-                TwitterAuthToken token = session.getAuthToken();
+                editor.putBoolean("LOGGED", true);
+                editor.putString("USERNAME", session.getUserName());
+                editor.apply();
             }
 
             @Override
@@ -92,8 +93,15 @@ public class Act_Login extends ActionBarActivity implements View.OnClickListener
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch(id){
+            case R.id.action_logout:
+                editor.putBoolean("LOGGED", false);
+                editor.putString("USERNAME", null);
+                editor.apply();
+                finish();
+                break;
+            default:
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -107,7 +115,7 @@ public class Act_Login extends ActionBarActivity implements View.OnClickListener
                 startActivity(intent);
                 break;
             case R.id.b_log:
-                    if(cDatabase != null){
+                if(cDatabase != null){
                     Cursor cursor = cDatabase.getPasswordByEmail(email.getText().toString());
                     if(cursor.moveToFirst()){
                         String pass = cursor.getString(cursor.getColumnIndex("password"));
@@ -115,10 +123,11 @@ public class Act_Login extends ActionBarActivity implements View.OnClickListener
                         if(pass.equals(password.getText().toString())){
                             Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                             editor.putBoolean("LOGGED", true);
+                            editor.putString("USERNAME", email.getText().toString());
                             editor.apply();
-                        }
+                        }else
+                            Toast.makeText(getApplicationContext(), "Wrong username or password", Toast.LENGTH_SHORT).show();
                     }
-
                     cDatabase.close();
                 }
 
@@ -137,8 +146,4 @@ public class Act_Login extends ActionBarActivity implements View.OnClickListener
         }
     }
 
-    public void register(String mail, String password){
-        DataBase userDb = new DataBase(this);
-        SQLiteDatabase db = userDb.getWritableDatabase();
-    }
 }
