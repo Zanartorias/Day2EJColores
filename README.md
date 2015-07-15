@@ -2,13 +2,11 @@
 
 MENÚ: Pantalla de banderes amb diverses opcions
 
-LOGIN: és l'única opció que es pot escollir sense estar loguejat i porta a la pantalla de login, on es pot escollir si autentitzar
-un usuari existent, entrar amb twitter o accedir al registre d'un usuari nou. Fa uns dies es va veure una mena de bug extrany que 
-no permetía clicar al botó de twitter (no s'havia alterat el codi de fabric). Es va arreglar sol (sense canviar res).
-        REGISTER: Per crear un usuari nou
-        Secret: A la icona del corb a la base de dades, si es pulsa 4 cops hauria de sortir un TextEdit on al posar "raiz"
-        aparegués una vista amb tots els usuaris i contrasenyes. Però hi ha errors i la recycleView no funciona bé. (Després
-        de donar-li moltes voltes vaig decidir posposar-ho per tenir temps de fer altres coses).
+LOGIN: és l'única opció que es pot escollir sense estar loguejat i porta a la pantalla de login, on es pot escollir si autentitzar un usuari existent, entrar amb twitter o accedir al registre d'un usuari nou. Fa uns dies es va veure una mena de bug extrany que no permetía clicar al botó de twitter (no s'havia alterat el codi de fabric). Es va arreglar sol (sense canviar res).
+REGISTER: Per crear un usuari nou
+Secret: A la icona del corb a la base de dades, si es pulsa 4 cops hauria de sortir un TextEdit on al posar "raiz"
+aparegués una vista amb tots els usuaris i contrasenyes. Però hi ha errors i la recycleView no funciona bé. (Després
+de donar-li moltes voltes vaig decidir posposar-ho per tenir temps de fer altres coses).
 
 La resta d'activities accedibles des de menú tenen totes un menú on es pot fer Logout que retorna al menú principal.
 
