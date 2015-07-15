@@ -1,6 +1,6 @@
 # Day2EJColores
 
-#Menú: Pantalla de banderes amb diverses opcions
+MENÚ: Pantalla de banderes amb diverses opcions
 
 LOGIN: és l'única opció que es pot escollir sense estar loguejat i porta a la pantalla de login, on es pot escollir si autentitzar
 un usuari existent, entrar amb twitter o accedir al registre d'un usuari nou. Fa uns dies es va veure una mena de bug extrany que 
