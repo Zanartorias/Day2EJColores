@@ -55,7 +55,8 @@
 
         <activity
             android:name=".Act_Memory"
-            android:label="@string/title_activity_act__memory" >
+            android:label="@string/title_activity_act__memory"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
